@@ -1,0 +1,50 @@
+<header class="navbar">
+  <div class="logo-content">
+    <div class="addressBook-text">
+      <span style="margin-right:5mm; margin-right:0mm;color:rgb(108, 77, 77);">Books</span>
+      <span style="margin-left:1mm ;margin-right:5mm;color: rgb(160, 137, 137);">({{books.data.length}})</span>
+      <br />
+    </div>
+
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" style="margin-right: 0mm;" type="text" placeholder="Search" aria-label="Search" name="search"
+        [(ngModel)]="this.search"  (input)="searchByBookname()" > 
+    </form>
+    <img style="height: 9.5mm; margin-right:0; margin-left: 200mm;"  class="cartlogo"
+    src="../../../assets/cart.png" alt="cartlogo"/>
+
+    
+    
+  <span style="margin-left:1mm ;margin-right:5mm;color: rgb(252, 249, 249);">{{carts.data.length}}</span>
+  <div  style="margin-left:50mm;margin-right: 0%;"   placeholder="sort by" >
+    <select  class="myvalue" name="filter" id="filter" placeholder="sort by" [(ngModel)]="sortby" (change)="sort()">
+      <option  class="select"  selected value="default">Sort By Relevance</option>
+      <option class="select" value="Increasing">Increasing price</option>
+      <option class="select" value="Decreasing">Decreasing price</option>
+    </select>
+  </div>
+
+  
+</div>
+ 
+</header>
+<div class="book-container">
+  <div class="card card-container" *ngFor="let book of this.books.data">
+    <div class="book-image">
+      <img [src]="this.book.bookImg" class="card-img-top" alt="book image logo">
+    </div>
+
+    <div class="card-body">
+
+      <h5 class="card-title">{{book.bookName}}</h5>
+      <h6 class="card-text">Author : {{book.autherName}}</h6>
+      <p class="card-text">MRP : {{book.price}} Rs.</p>
+      <div class="button-container">
+        <button type="button" class="red"  (click)="addToCart(book.bookId)">Add to Bag</button>
+        <button type="button" class="green" style="margin-left: 5mm;">Wishlist</button>
+
+
+      </div>
+    </div>
+  </div>
+</div>
