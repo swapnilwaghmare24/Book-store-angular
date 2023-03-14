@@ -1,0 +1,34 @@
+<header style=" background-color:#78244C ;" class="navbar">
+
+    <img style="height: 9.5mm;margin-left: 350mm; margin-right:20mm;" (click)="toHomePage()" class="cartlogo"
+    src="../../../assets/home.png" alt="logoutlogo" />
+  
+  </header>
+    
+  <div class="container">
+      <div class="order-image">
+        <img style="margin-top: 0;" src="../../../assets/order.jpg" alt="Loading...">
+        <h4 class="order-heading">Order Placed Successfully</h4>
+      </div>
+      <div class="message" >
+        <h6>Congratulations!!!your order is confirmed</h6>
+        <h6>the order id  is</h6><h6> {{order.data[orderLength].orderId}}</h6><h6>save the order id for</h6>
+        <h6>further communication.</h6>
+      </div>
+      <div class="table-details">
+        <table>
+          <thead>
+            <th>Email Us</th>
+            <th>Contact Us</th>
+            <th>Address</th>
+          </thead>
+          <tr>
+            <td>iamswapnilengg@gmail.com</td>
+            <td>+91 7777777777</td>
+            <td>Hingoli</td>
+          </tr>
+        </table>
+      </div>
+      <br>
+      <button  style="margin-left: 155mm;margin-bottom:30mm;" type="button" (click)="goToDashboard()" >Continue Shopping</button>
+    </div>

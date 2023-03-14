@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from 'src/app/bookstoreservice/book.service';
 import { CartModel } from 'src/app/model/cartmodel';
 import { CartService } from 'src/app/bookstoreservice/cart.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/bookstoreservice/user.service';
 
 @Component({
   selector: 'app-home',
@@ -14,15 +16,20 @@ export class HomeComponent implements OnInit {
 
   search: any;
   carts!: any;
-  userId: any=1;
+  userId: any;
   myCart: CartModel = new CartModel(0, 0, 0);
 
+  userToken = this.getRoute.snapshot.paramMap.get("token");
 
-  constructor(private bookService:BookService, private cartService:CartService){ }
+  constructor( private route:Router,private bookService:BookService, private userService:UserService, private cartService:CartService, private getRoute:ActivatedRoute){ }
 
   ngOnInit(): void {
     
-    this.sortby = "default"
+    this.sortby = "default";
+
+    this.userService.getUserIdByToken(this.userToken).subscribe((data: any) => {
+      this.userId = data.data;
+    });
  
     this.bookService.getAllBooks().subscribe((getData: any) => {
       console.log(getData)
@@ -32,8 +39,10 @@ export class HomeComponent implements OnInit {
   }
 
   getAllCart() {
-    this.cartService.getAllCarts().subscribe(mydata => {
+    this.cartService.getAllCarts(this.userToken).subscribe(mydata => {
       this.carts = mydata;
+      console.log(this.carts);
+     
     });
   }
 
@@ -55,15 +64,12 @@ export class HomeComponent implements OnInit {
         this.cartService.saveCart(this.myCart).subscribe((getdata: any) => {
          
           this.carts = getdata;
-          if(this.carts!=null)
-          {
-            alert("book added to cart");
-          }
-         
-          //window.location.reload();
+        
+          window.location.reload();
+        
 
         });
-        window.location.reload();
+       
 
       }
     } else {//if no data in cart adds the items
@@ -73,13 +79,12 @@ export class HomeComponent implements OnInit {
       this.cartService.saveCart(this.myCart).subscribe((getdata: any) => {
        
         this.carts = getdata;
-        if(this.carts!=null)
-        {
-          alert("book added to cart");
-        }
-       
-       // window.location.reload();
+        window.location.reload();
+     
+        
       });
+
+     
     }
   }
 
@@ -102,6 +107,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  toCartOnClickAddtoBag() {
+    this.route.navigate(["cart", this.userToken]);
+  }
  
   searchByBookname() {
     if (this.search != '') {
@@ -112,6 +120,11 @@ export class HomeComponent implements OnInit {
     else {
       this.ngOnInit();
     }
+  }
+
+  registerPage()
+  {
+    this.route.navigate(["register"]);
   }
 
 }

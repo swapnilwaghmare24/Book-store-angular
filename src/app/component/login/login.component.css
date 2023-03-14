@@ -1,0 +1,29 @@
+.card{
+    background-color: #6c2150;
+}
+.bgColor{
+    background-color:white;
+}
+.mb{
+    color:#393c05;
+}
+.mb1{
+    color:#707070;
+}
+.loginheader{
+    color:white;
+}
+.text{
+    color:white;
+}
+.textofButton{
+    color:white;
+}
+.astext {
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+    color:#3371B5;
+}

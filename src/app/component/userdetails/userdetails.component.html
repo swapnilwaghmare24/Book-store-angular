@@ -1,0 +1,60 @@
+<header style=" background-color:#78244C ;" class="navbar">
+
+    <img style="height: 9.5mm;margin-left: 350mm; margin-right:mm;" (click)="toHomePage()" class="cartlogo"
+    src="../../../assets/home.png" alt="logoutlogo" />
+  
+  </header>
+  
+  <div class="container mt-5 mb-5">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="col-md-6">
+        <div class="card px-5 py-5"> <span class="circle"><i class="fa fa-check"></i></span>
+          <div class="form-content">
+            <form #myForm="ngForm" novalidate>
+              <div class="form-head">
+                <div class="form-head-text">Customer Details</div>
+              </div>
+              <div class="form-constrains">
+                <div class="row-content">
+                  <label for="firstName" class="label text">First Name</label>
+                  <br>
+                  <input type="text" class="input"  id="firstName"
+                    name="firstName" placeholder="Your first name.." autocomplete="off" required
+                    >
+                  
+                </div>
+                <div class="row-content">
+                  <label for="lastName" class="label text">Last Name</label>
+                  <br>
+                  <input type="text" class="input"  id="lastName" 
+                    name="lastName" placeholder="Your last name.." autocomplete="off" required
+                  >
+                 
+                </div>
+                <div class="row-content">
+                  <label for="email" class="label text">Email</label>
+                  <br>
+                  <input type="text" class="input" email id="email" name="email"
+                    placeholder="Your Email Id..." autocomplete="off" required >
+                 
+                </div>
+                <div class="row-content">
+                  <label for="address" class="label text">Address</label>
+                  <br>
+                  <textarea name="address" id="address" placeholder="Your address.." autocomplete="off"
+                    ></textarea>
+                  <span class="error"></span>
+                </div>
+                <div class="buttons-contact">
+                  <button type="button" class="button button-submit" id="submitButton" [disabled]="!myForm.valid "
+                    (click)="updateUser()">Continue</button>
+                  <button type="reset" class="button button-reset" id="resetButton">Reset</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

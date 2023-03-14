@@ -13,7 +13,20 @@ export class CartService {
   }
 
   
-  getAllCarts(){
-    return this.http.get("http://localhost:8080/cart/getall");
+  getAllCarts(token:any){
+    return this.http.get("http://localhost:8080/cart/all/"+token);
   }
+
+  getAllCartsData(){
+    return this.http.get("http://localhost:8080/cart/getall/");
+  }
+
+  deleteCartByCartId(Id:any){
+    return this.http.delete("http://localhost:8080/cart/remove/"+Id);
+  }
+
+  updateCartByCartQuantityByCartId(Id:any,quantity:any){
+    return this.http.get("http://localhost:8080/cart/cartid/"+Id+"/qty/"+quantity)
+  }
+
 }
